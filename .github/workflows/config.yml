@@ -40,11 +40,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install Allure CLI
-        uses: allure-framework/allure-action@v1
-        with:
-          version: 2.35.0
-
       - name: Run UI tests
         env:
           VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
@@ -52,13 +47,6 @@ jobs:
         run: |
           pytest -s -v tests/test_buy.py --alluredir=allure_results
         continue-on-error: true
-
-      - name: Prepare Allure results
-        run: |
-          mkdir -p allure-results/history
-          if [ -d ./.github/gh-pages/history ]; then
-            cp -R ./.github/gh-pages/history/* allure-results/history/
-          fi
 
       - name: Generate Allure report
         run: |
