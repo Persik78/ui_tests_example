@@ -2,3 +2,4 @@ allure-python-commons~=2.15.0
 selenium~=4.35.0
 pytest~=8.4.1
 pytest_check~=2.5.3
+allure-pytest~=2.15.0
