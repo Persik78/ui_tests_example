@@ -45,7 +45,7 @@ jobs:
           VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
         run: |
-          pytest -s -v tests/test_buy.py --alluredir=allure_results
+          pytest -s -v tests/test_login_page.py --alluredir=allure_results
         continue-on-error: true
 
       - name: Generate Allure report with history
