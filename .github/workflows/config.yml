@@ -48,10 +48,6 @@ jobs:
           pytest -s -v tests/test_buy.py --alluredir=allure_results
         continue-on-error: true
 
-      - name: Generate Allure report
-        run: |
-          allure generate allure_results --clean -o allure-report
-
       - name: Generate Allure report with history
         if: always()
         id: allure_report
