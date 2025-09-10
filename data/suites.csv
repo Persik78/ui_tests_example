@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Authorization invalid password(without a number)","2521","test_authorization_invalid_password","tests","Wed Sep 10 17:25:03 UTC 2025","passed","Wed Sep 10 17:25:06 UTC 2025","TestsLoginPageNegative","test_login_page","",""
-"Authorization with correct data and minimum length username","3665","test_authorization_correct_data","tests","Wed Sep 10 17:24:59 UTC 2025","passed","Wed Sep 10 17:25:03 UTC 2025","TestsLoginPagePositive","test_login_page","",""
-"Checking the input of empty fields","2518","test_authorization_input_of_empty_fields","tests","Wed Sep 10 17:25:06 UTC 2025","passed","Wed Sep 10 17:25:09 UTC 2025","TestsLoginPageNegative","test_login_page","",""
+"Checking the input of empty fields","3301","test_authorization_input_of_empty_fields","tests","Wed Sep 10 17:43:34 UTC 2025","passed","Wed Sep 10 17:43:37 UTC 2025","TestsLoginPageNegative","test_login_page","",""
+"Authorization with correct data and minimum length username","5278","test_authorization_correct_data","tests","Wed Sep 10 17:43:24 UTC 2025","passed","Wed Sep 10 17:43:30 UTC 2025","TestsLoginPagePositive","test_login_page","",""
+"Authorization invalid password(without a number)","3471","test_authorization_invalid_password","tests","Wed Sep 10 17:43:30 UTC 2025","passed","Wed Sep 10 17:43:33 UTC 2025","TestsLoginPageNegative","test_login_page","",""
