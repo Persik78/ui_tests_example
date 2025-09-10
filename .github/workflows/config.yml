@@ -37,20 +37,24 @@ jobs:
           pytest -s -v tests/test_login_page.py --alluredir=reports
         continue-on-error: true
 
-      - name: Copy reports to gh-pages
+      - name: Copy history from gh-pages to reports
         run: |
-          mkdir -p .github/gh-pages/history/reports-ui
-          cp -r reports/* .github/gh-pages/history/reports-ui/
+          mkdir -p reports/history
+          cp -R ./.github/gh-pages/history/* reports/history/ || true
 
       - name: Generate Allure report
         run: |
-          allure generate .github/gh-pages/history/reports-ui -o .github/gh-pages/history/reports-ui/allure-report --clean
+          allure generate reports --clean -o allure-report
+
+      - name: Update Allure history
+        run: |
+          mkdir -p ./.github/gh-pages/history
+          cp -R allure-report/history/* ./.github/gh-pages/history/ || true
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/demo'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
-          folder: .github/gh-pages/history/reports-ui/allure-report
+          folder: allure-report
           clean: true
