@@ -22,6 +22,7 @@ class Base():
         return WebDriverWait(self.driver, timeout=20).until(EC.presence_of_all_elements_located((By.XPATH, locator)))
 
     def open_url(self, url):
+        print(url)
         return self.driver.get(url)
 
     def get_screenshoot(self):

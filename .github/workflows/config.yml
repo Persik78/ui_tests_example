@@ -11,18 +11,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set environment variables
-        run: |
-          if [ "${{ github.ref }}" == "refs/heads/dev" ]; then
-            echo "BASE_URL=${{ secrets.DEV_BASE_URL }}" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
-            echo "BASE_URL=${{ secrets.IFT_BASE_URL }}" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "BASE_URL=${{ secrets.PROD_BASE_URL }}" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "BASE_URL=${{ secrets.DEMO_BASE_URL }}" >> $GITHUB_ENV
-          fi
-
       - name: Checkout gh-pages branch
         uses: actions/checkout@v4
         with:
@@ -42,6 +30,7 @@ jobs:
 
       - name: Run UI tests
         env:
+          BASE_URL: ${{ secrets.BASE_URL }}
           VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
         run: |
