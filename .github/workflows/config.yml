@@ -34,19 +34,17 @@ jobs:
           VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
         run: |
-          pytest -s -v tests/test_login_page.py --alluredir=allure_results
+          pytest -s -v tests/test_login_page.py --alluredir=reports
         continue-on-error: true
 
-      - name: Generate Allure report with history
-        if: always()
-        id: allure_report
-        uses: simple-elf/allure-report-action@master
-        with:
-          allure_results: ./allure_results
-          gh_pages: ./.github/gh-pages
-          allure_report: ./allure-report
-          allure_history: ./allure-report/history
-          keep_reports: 10
+      - name: Copy reports to gh-pages
+        run: |
+          mkdir -p .github/gh-pages/history/reports-ui
+          cp -r reports/* .github/gh-pages/history/reports-ui/
+
+      - name: Generate Allure report
+        run: |
+          allure generate .github/gh-pages/history/reports-ui -o .github/gh-pages/history/reports-ui/allure-report --clean
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/demo'
@@ -54,5 +52,5 @@ jobs:
         with:
           token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
-          folder: allure-report
+          folder: .github/gh-pages/history/reports-ui/allure-report
           clean: true
