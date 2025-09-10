@@ -18,6 +18,6 @@ class DashboardPage(Base):
     #Methods
     @allure.step('Checking title dashboard page')
     def check_title_dashboard_page(self):
-        self.soft_assert_url(Links.DASHBOARD_PAGE)
+        self.assert_url(Links.DASHBOARD_PAGE)
         self.soft_assert_word(self.get_title_dashboard_page(), 'Dashboard')
         self.get_screenshoot()

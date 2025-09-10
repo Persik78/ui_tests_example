@@ -17,11 +17,3 @@ def set_up():
     yield driver
     driver.quit()
     print(' Final Test', datetime.datetime.now())
-
-@pytest.fixture
-def login():
-    print('\nStart Test', datetime.datetime.now(datetime.timezone.utc))
-    driver = webdriver.Chrome(options=chrome_options)
-    yield driver
-    driver.quit()
-    print(' Final Test', datetime.datetime.now())

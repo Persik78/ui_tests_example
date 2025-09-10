@@ -96,11 +96,11 @@ class AdminPage(Base):
 
     #Methods
     def check_basic_attribute_users(self):
-        self.soft_assert_url(Links.ADMIN_PAGE)
+        self.assert_url(Links.ADMIN_PAGE)
         self.soft_assert_word(self.get_title_admin_page(), 'Admin')
         self.soft_assert_word(self.get_level_title_admin_page(), 'User Management')
     def check_basic_attribute_job(self):
-        self.soft_assert_url(Links.JOB_TITLE)
+        self.assert_url(Links.JOB_TITLE)
         self.soft_assert_word(self.get_title_admin_page(), 'Admin')
         self.soft_assert_word(self.get_level_title_admin_page(), 'Job')
 
@@ -195,12 +195,6 @@ class UserManagementLevel(AdminPage):
 
 
     #Actions
-
-
-    def count_labels_filter(self):
-        return self.count_element(self.get_labels_filter())
-    def count_found_users(self):
-        return self.count_element(self.get_found_users)
 
 
     #Methods

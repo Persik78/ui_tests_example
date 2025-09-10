@@ -39,9 +39,9 @@ class LoginPage(Base):
     def get_label_invalid_credentials(self):
         return self.find_element_of_presence(self.label_invalid_credentials)
     def get_required_username(self):
-        return self.find_elements_of_presence(self.required_username)
+        return self.find_element_of_presence(self.required_username)
     def get_required_password(self):
-        return self.find_elements_of_presence(self.required_password)
+        return self.find_element_of_presence(self.required_password)
 
 
     #Actions

@@ -22,7 +22,6 @@ class Base():
         return WebDriverWait(self.driver, timeout=20).until(EC.presence_of_all_elements_located((By.XPATH, locator)))
 
     def open_url(self, url):
-        print(url)
         return self.driver.get(url)
 
     def get_screenshoot(self):
@@ -36,20 +35,17 @@ class Base():
 
     def soft_assert_url(self, expected_url):
         actual_url = self.driver.current_url
-        check.equal(actual_url, expected_url,f'Checked failed, actual result={actual_url}, expected result={expected_url}')
-        print(f'Checked success, expected result={expected_url}')
+        check.equal(actual_url, expected_url,f'Checked url failed, actual result={actual_url}, expected result={expected_url}')
 
-    @staticmethod
-    def count_element(elements):
-        return len(elements) + 1
+    def assert_url(self, expected_url):
+        actual_url = self.driver.current_url
+        assert actual_url == expected_url, print(f'Checked failed, actual result={actual_url}, expected result={expected_url}')
 
     @staticmethod
     def soft_assert_word(element, expected_word):
         actual_word = element.text
         check.equal(actual_word, expected_word, f'Checked failed, actual result={actual_word}, expected result={expected_word}')
-        print(f'Checked success, expected result={expected_word}')
 
     @staticmethod
     def soft_assert_count(actual_count, expected_count):
         check.equal(actual_count, expected_count,f'Checked failed, actual result={actual_count}, expected result={expected_count}')
-        print(f'Checked success, expected result={expected_count}')
