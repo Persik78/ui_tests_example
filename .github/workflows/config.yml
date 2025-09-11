@@ -1,12 +1,7 @@
 name: UI Tests
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch
 
 jobs:
   ui-tests:
@@ -36,7 +31,6 @@ jobs:
           rm allure_2.30.0-1_all.deb
 
       - name: Run UI tests
-
         run: |
           pytest -s -v tests/test_login_page.py --alluredir=allure-results
         continue-on-error: true
@@ -60,10 +54,20 @@ jobs:
           allure generate allure-results -o allure-history --clean
         continue-on-error: true
 
-      - name: Deploy report to GitHub Pages
+      - name: Commit changes to gh-pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add allure-history
+          git commit -m "Update Allure report" || echo "No changes to commit"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: actions/deploy-pages@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: gh-pages/allure-history
+          token: ${{ secrets.GITHUB_TOKEN }}
