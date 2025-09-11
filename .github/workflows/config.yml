@@ -41,36 +41,29 @@ jobs:
           pytest -s -v tests/test_login_page.py --alluredir=allure-results
         continue-on-error: true
 
-      - name: Upload Allure results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
-
-      - name: Check out repository
+      - name: Checkout gh-pages branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Download Allure results
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
-
-      - name: Allure Report action from marketplace
-        uses: simple-elf/allure-report-action@v1.12
+      - name: Copy Allure results to gh-pages
         if: always()
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
+        run: |
+          mkdir -p gh-pages/allure-results
+          cp -r allure-results/* gh-pages/allure-results/
 
-      - name: Deploy report to Github Pages
+      - name: Generate Allure report in gh-pages
+        if: always()
+        run: |
+          cd gh-pages
+          allure generate allure-results -o allure-history --clean
+        continue-on-error: true
+
+      - name: Deploy report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.CI_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-history
+          publish_dir: gh-pages/allure-history
