@@ -14,6 +14,7 @@ jobs:
         with:
           ref: gh-pages
           path: ./.github/gh-pages
+          fetch-depth: 0
 
       - name: Install Allure CLI
         run: |
@@ -59,7 +60,7 @@ jobs:
         run: |
           allure generate allure-results --clean -o allure-report
 
-      - name: Check allure-report
+      - name: Check allure-report before deploy
         run: ls -la allure-report
 
       - name: Update Allure history
@@ -73,4 +74,5 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
           folder: allure-report
+          target-folder: .
           clean: false
