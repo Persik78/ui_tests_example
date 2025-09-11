@@ -16,6 +16,10 @@ jobs:
           path: ./.github/gh-pages
 
       - name: Run UI tests
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
         run: |
           pytest -s -v tests/test_login_page.py --alluredir=allure-results
         continue-on-error: true
