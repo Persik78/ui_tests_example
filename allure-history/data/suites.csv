@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Authorization invalid password(without a number)","2518","test_authorization_invalid_password","tests","Thu Sep 11 12:01:49 UTC 2025","passed","Thu Sep 11 12:01:52 UTC 2025","TestsLoginPageNegative","test_login_page","",""
-"Checking the input of empty fields","2534","test_authorization_input_of_empty_fields","tests","Thu Sep 11 12:01:52 UTC 2025","passed","Thu Sep 11 12:01:55 UTC 2025","TestsLoginPageNegative","test_login_page","",""
-"Authorization with correct data and minimum length username","3500","test_authorization_correct_data","tests","Thu Sep 11 12:01:45 UTC 2025","passed","Thu Sep 11 12:01:49 UTC 2025","TestsLoginPagePositive","test_login_page","",""
