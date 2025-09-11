@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"92b474f7516c8618bccc170a672eab04","name":"Login Page Negative Tests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}},{"uid":"7f25a13816c692ed698c9b626e3493ea","name":"Login Page Positive Tests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
