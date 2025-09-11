@@ -21,7 +21,6 @@ jobs:
           curl -o allure-2.34.1.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.34.1/allure-commandline-2.34.1.tgz
           sudo tar -zxvf allure-2.34.1.tgz -C /opt/
           sudo ln -sf /opt/allure-2.34.1/bin/allure /usr/bin/allure
-          allure --version
           rm allure-2.34.1.tgz
 
       - name: Set up Python
@@ -42,9 +41,6 @@ jobs:
         run: |
           pytest -s -v --alluredir=allure-results
 
-      - name: Check allure-results
-        run: ls -la allure-results
-
       - name: Prepare allure-results dir
         run: mkdir -p allure-results/history
 
@@ -60,9 +56,6 @@ jobs:
         run: |
           allure generate allure-results --clean -o allure-report
 
-      - name: Check allure-report before deploy
-        run: ls -la allure-report
-
       - name: Update Allure history
         run: |
           mkdir -p ./.github/gh-pages/history
@@ -75,4 +68,4 @@ jobs:
           branch: gh-pages
           folder: allure-report
           target-folder: .
-          clean: false
+          clean: true
