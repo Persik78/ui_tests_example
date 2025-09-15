@@ -72,7 +72,7 @@ class LoginPage(Base):
         self.get_screenshoot()
 
     @allure.step('Input username and password')
-    def input_username_and_password(self, username, password):
+    def input_username_and_password(self, username: str, password: str):
         self.input_username(username)
         self.input_password(password)
         self.get_screenshoot()
@@ -103,4 +103,12 @@ class LoginPage(Base):
         self.soft_assert_word(self.get_required_password(), 'Required')
         self.get_screenshoot()
 
+    @allure.step('Checking required fields (username and/or password)')
+    def check_required_username_and_or_password(self, username, password):
+        if username == '' and password == '':
+            self.check_required_username_and_password()
+        elif username == '':
+            self.check_required_username()
+        elif password == '':
+            self.check_required_password()
 
